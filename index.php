@@ -5,7 +5,7 @@ $sql = "select * from carro";
 $query = mysqli_query($conn, $sql);
 ?>
 
-<!DOCTYPE htl>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -49,7 +49,9 @@ $query = mysqli_query($conn, $sql);
       <td><?php echo $row['marca']; ?></td>
       <td><?php echo $row['modelo']; ?></td>
       <td><?php echo $row['ano']; ?></td>
-      <td> ALTERAR | APAGAR </td>
+      <td> <a href="form_alterar.php?id=<?php echo $row['pk_carro']; ?>">ALTERAR</a> 
+        | 
+        <a href="deletar.php?id=<?php echo $row['pk_carro']; ?>"> APAGAR </td></td>
     </tr>
   <?php
     }

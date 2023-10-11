@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Informe os dados a serem inseridos: </h1>
 
-        <form action="novo.php" method="post">
+        <form action="adicionar.php" method="post">
             <div class="mb-3">
                 <label for="marca" class="form-label">Marca</label>
                 <input type="text" class="form-control" id="marca" aria-describedby="Marca" name="marca">
@@ -39,7 +39,7 @@
                 <label for="tipo_combustivel" class="form-label">Tipo de Combustível</label>
                 <select name="tipo_combustivel" id="tipo_combustivel" class="form-select">
                     <option value="D">Diesel</option>
-                    <option value="F">Gasolina e Álcool</option>
+                    <option value="F">FLEX</option>
                     <option value="G">Gasolina</option>
                     <option value="E">Etanol</option>
                     <option value="EL">Elétrico</option>
