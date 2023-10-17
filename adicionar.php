@@ -13,14 +13,21 @@
     $motor = $_POST["motor"];
     $km = $_POST["km"];
     $descricao = $_POST["descricao"];
+    $nome = $_POST["nome"];
 
-    $sql = "INSERT INTO carro(marca, modelo, cambio, cor, tipo_combustivel, ano, motor, km, descricao)
-    VALUES('$marca', '$modelo', '$cambio', '$cor', '$tipo_combustivel', $ano, $motor, $km, '$descricao')";
+    $sql = "INSERT INTO carro(marca, modelo, cambio, cor, tipo_combustivel, ano, motor, km, descricao, fk_aluno)
+    VALUES('$marca', '$modelo', '$cambio', '$cor', '$tipo_combustivel', $ano, $motor, $km, '$descricao', '$nome')";
 
     mysqli_query($conn, $sql);
 
-    if(mysqli_error($conn)=="")
-        header("location: index.php");
-    else
-        echo mysqli_error($conn);
+    if(mysqli_error($conn)==""){
+        $status = "ok";
+        $msg = "Registo Incluido com Sucesso";
+    }
+    else {
+        $status = "erro";
+        $msg = "Erro:". mysqli_error($conn); 
+    }
+    header("location: index.php?status=$status&msg=$msg");
+
 ?>

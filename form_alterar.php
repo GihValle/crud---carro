@@ -9,9 +9,12 @@
 
     $id = $_GET["id"];
     
-    $sql = "SELECT pk_carro, marca, modelo, cambio, cor, tipo_combustivel, ano, motor, km, descricao FROM carro WHERE pk_carro=".$id;
+    $sql = "SELECT pk_carro, marca, modelo, cambio, cor, tipo_combustivel, ano, motor, km, descricao, fk_aluno FROM carro WHERE pk_carro=".$id;
     $query = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($query);
+
+    $sql = "SELECT pk_pessoa, nome FROM ALUNO";
+    $queryNome = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +84,19 @@
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea type="text" class="form-control" id="descricao" name="descricao" value="<?php echo $row["descricao"]; ?>"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="nome" class="form-label">Dono do Carro</label>
+                <select name="nome" id="nome" class="form-select">
+                    <option value="">Dono do Carro</option>
+                    <?php while ($rowNome = mysqli_fetch_assoc($queryNome)){ ?>
+                        <option value="<?php echo $rowNome['pk_pessoa']?>"
+                        <?php echo $row['fk_aluno'] == $rowNome["pk_pessoa"] ? "selected" : "" ?>>
+                        <?php echo $rowNome['nome']?>
+                    </option>
+                    <?php } ?>
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Enviar</button>

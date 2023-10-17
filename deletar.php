@@ -13,6 +13,13 @@
 
     mysqli_query($conn, $sql);
 
-    if(mysqli_error($conn)=="")
-        header ("location: index.php");
+    if(mysqli_error($conn)==""){
+        $status = "ok";
+        $msg = "Registo Apagado com Sucesso";
+    }
+    else {
+        $status = "erro";
+        $msg = "Erro:". mysqli_error($conn); 
+    }
+    header("location: index.php?status=$status&msg=$msg");
 ?>

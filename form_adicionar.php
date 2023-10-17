@@ -1,3 +1,11 @@
+<?php
+    include_once("conexao.php");
+
+    $sql = "SELECT pk_pessoa, nome FROM aluno";
+
+    $query = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -64,6 +72,16 @@
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea type="text" class="form-control" id="descricao" name="descricao"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="nome" class="form-label">Dono do Carro</label>
+                <select name="nome" id="nome" class="form-select">
+                    <option value="">Dono do Carro</option>
+                    <?php while ($row = mysqli_fetch_assoc($query)){ ?>
+                        <option value="<?php echo $row['pk_pessoa']?>"><?php echo $row['nome']?></option>
+                    <?php } ?>
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Enviar</button>
