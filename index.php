@@ -1,7 +1,8 @@
 <?php
   include_once("conexao.php");
 
-  $sql = "select * from CARRO";
+  $sql = "select pk_carro, marca, modelo, ano, nome from carro
+          RIGHT JOIN aluno ON carro.fk_aluno=aluno.pk_pessoa";
   $query = mysqli_query($conn, $sql);
 
   if(isset($_GET['status']) && isset($_GET["msg"])){
@@ -21,6 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
     <title>CRUD - Persistência em banco de dados</title>
 </head>
@@ -50,7 +52,7 @@
       </ul>
 
       <div class="d-flex justify-content-end">
-          <a href="form_adicionar.php" class="btn btn-primary">ADICIONAR</a>
+          <a href="form_adicionar.php" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
       </div>
 
       <div id="success" class="alert alert-success" role="alert" onClick="fecharSuccess();">
@@ -70,6 +72,7 @@
               <th scope="col">Marca</th>
               <th scope="col">Modelo</th>
               <th scope="col">Ano</th>
+              <th scope="col">Dono</th>
               <th scope="col">Opções</th>
             </tr>
         </thead>
@@ -83,9 +86,10 @@
               <td><?php echo $row['marca']; ?></td>
               <td><?php echo $row['modelo']; ?></td>
               <td><?php echo $row['ano']; ?></td>
-              <td> <a href="form_alterar.php?id=<?php echo $row['pk_carro']; ?>">ALTERAR</a> 
-                | 
-                <a href="deletar.php?id=<?php echo $row['pk_carro']; ?>"> APAGAR </td></td>
+              <td><?php echo $row['nome']; ?></td>
+              <td> <a class="btn btn-outline-secondary btn-sm" href="form_alterar.php?id=<?php echo $row['pk_carro']; ?>"><i class="bi bi-pencil-square"></i></a> 
+                
+                <a class="btn btn-outline-danger btn-sm" href="deletar.php?id=<?php echo $row['pk_carro']; ?>"><i class="bi bi-trash"></i></td></td>
             </tr>
           <?php
             }
