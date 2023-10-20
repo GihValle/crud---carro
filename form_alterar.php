@@ -92,7 +92,8 @@
                     <option value="">Dono do Carro</option>
                     <?php while ($rowNome = mysqli_fetch_assoc($queryNome)){ ?>
                         <option value="<?php echo $rowNome['pk_pessoa']?>"
-                        <?php echo $row['fk_aluno'] == $rowNome["pk_pessoa"] ? "selected" : "" ?>>
+                        <?php echo $row['fk_aluno'] == $rowNome["pk_pessoa"] ? "selected
+                        " : "" ?>>
                         <?php echo $rowNome['nome']?>
                     </option>
                     <?php } ?>
