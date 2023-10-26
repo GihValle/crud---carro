@@ -7,7 +7,7 @@
     if($_GET["id"]=="")
         header("location: index.php");
 
-    $id = $_GET["id"];
+    $id = base64_decode($_GET["id"]);
     
     $sql = "SELECT pk_carro, marca, modelo, cambio, cor, tipo_combustivel, ano, motor, km, descricao, fk_aluno FROM carro WHERE pk_carro=".$id;
     $query = mysqli_query($conn, $sql);

@@ -6,8 +6,8 @@
   $query = mysqli_query($conn, $sql);
 
   if(isset($_GET['status']) && isset($_GET["msg"])){
-    $status = $_GET['status'];
-    $msg = $_GET["msg"];
+    $status = base64_decode($_GET['status']);
+    $msg = base64_decode($_GET["msg"]);
   }
   else{
     $status = "";
@@ -87,9 +87,9 @@
               <td><?php echo $row['modelo']; ?></td>
               <td><?php echo $row['ano']; ?></td>
               <td><?php echo $row['nome']; ?></td>
-              <td> <a class="btn btn-outline-secondary btn-sm" href="form_alterar.php?id=<?php echo $row['pk_carro']; ?>"><i class="bi bi-pencil-square"></i></a> 
+              <td> <a class="btn btn-outline-secondary btn-sm" href="form_alterar.php?id=<?php echo base64_encode($row['pk_carro']); ?>"><i class="bi bi-pencil-square"></i></a> 
                 
-                <a class="btn btn-outline-danger btn-sm" href="deletar.php?id=<?php echo $row['pk_carro']; ?>"><i class="bi bi-trash"></i></td></td>
+                <a class="btn btn-outline-danger btn-sm" href="deletar.php?id=<?php echo base64_encode($row['pk_carro']); ?>"><i class="bi bi-trash"></i></td></td>
             </tr>
           <?php
             }
